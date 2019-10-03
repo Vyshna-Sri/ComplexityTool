@@ -45,7 +45,13 @@ public class Manipulators {
 					if(characterPrev == 'e' && character == 'n' && characterNext == 'd' && line.charAt(i+2) == 'l') {
 						numberOfManipulators++;
 					}
-					else if(character == '\\' && characterNext == 'n') {
+					if(characterPrev == 'b' && character == 'r' && characterNext == 'e' && line.charAt(i+2) == 'a'&& line.charAt(i+3) == 'k') {
+						numberOfManipulators++;
+					}
+					if(characterPrev == 'c' && character == 'o' && characterNext == 'n' && line.charAt(i+2) == 't'&& line.charAt(i+3) == 'i'&& line.charAt(i+4) == 'n' && line.charAt(i+5) == 'u'&& line.charAt(i+6) == 'e') {
+						numberOfManipulators++;
+					}
+					if(character == '\\' && characterNext == 'n') {
 						numberOfManipulators++;
 					}
 				}
