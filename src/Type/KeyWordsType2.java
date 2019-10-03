@@ -20,12 +20,12 @@ public class KeyWordsType2 {
 				char characterPrev =0;
 				char characterPrevPrev =0;
 
-				if(character == '/' && characterNext =='/') {
-					break;
-				}
 				if(i != line.length()) {
 					characterNext = line.charAt(i+1);
 		        }
+				if(character == '/' && characterNext =='/') {
+					break;
+				}
 		        if(i != 0) {
 					characterPrev = line.charAt(i-1);
 		        }
@@ -71,16 +71,16 @@ public class KeyWordsType2 {
 					else if(characterPrev == 'c' && character == 'i' && characterNext == 'n') {
 						numberOfKeyWords++;
 					}				
-					else if(characterPrev == 'i' && character == 'f') {
+					else if(characterPrev == 'i' && character == 'f'&& characterNext == '(') {
 						numberOfKeyWords++;
 					}				
-					else if(characterPrev == 'f' && character == 'o' && characterNext == 'r') {
+					else if(characterPrev == 'f' && character == 'o' && characterNext == 'r'&& line.charAt(i+2) == '(') {
 						numberOfKeyWords++;
 					}				
 					else if(characterPrev == 'w' && character == 'h' && characterNext == 'i' && line.charAt(i+2) == 'l' && line.charAt(i+3) == 'e') {
 						numberOfKeyWords++;
-					}				
-					else if(characterPrev == 's' && character == 'w' && characterNext == 'i' && line.charAt(i+2) == 't' && line.charAt(i+3) == 'c' && line.charAt(i+4) == 'h') {
+					}				 
+					else if(characterPrev == 's' && character == 'w' && characterNext == 'i' && line.charAt(i+2) == 't' && line.charAt(i+3) == 'c' && line.charAt(i+4) == 'h' && line.charAt(i+5) == '(') {
 						numberOfKeyWords++;
 					}				
 					else if(characterPrev == 'c' && character == 'a' && characterNext == 's' && line.charAt(i+2) == 'e') {

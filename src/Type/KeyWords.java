@@ -20,12 +20,12 @@ public class KeyWords {
 				char characterPrev =0;
 				char characterPrevPrev =0;
 
-				if(character == '/' && characterNext =='/') {
-					break;
-				}
 				if(i != line.length()) {
 					characterNext = line.charAt(i+1);
 		        }
+				if(character == '/' && characterNext =='/') {
+					break;
+				}
 		        if(i != 0) {
 					characterPrev = line.charAt(i-1);
 		        }

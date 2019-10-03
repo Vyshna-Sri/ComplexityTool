@@ -34,7 +34,7 @@ public class Main {
 		NumericValues numericValuesComplexity = new NumericValues();
 		Variables variablesComplexity = new Variables();
 
-		String filePath = "/home/jaliya/Desktop/Projects/CodeComplexity/Complexity_of_a_program/src/SrcCodes/FibonacciMain.java";
+		String filePath = "/home/jaliya/Desktop/Projects/CodeComplexity/Complexity_of_a_program/src/SrcCodes/FactorialExample.java";
 		ReadFileLineByLine readFileLineByLine = new ReadFileLineByLine();
 		String[] code;
 		code = readFileLineByLine.file(filePath);
@@ -51,7 +51,7 @@ public class Main {
 		int numericValues[] = numericValuesComplexity.complexity(code);
 		int relations[] = relationsOperators.complexity(code);
 		int tests[] = textsComplexity.complexity(code);
-		//int variables[] = variablesComplexity.complexity(code);
+		int variables[] = variablesComplexity.complexity(code);
 		int i = 0;
 		for (String s : code) {
 			System.out.println(s);
@@ -67,7 +67,8 @@ public class Main {
 					miscellaneous[i]+
 					numericValues[i]+
 					relations[i]+
-					tests[i]));
+					tests[i]+
+					variables[i]));
 			System.out.println("");
 			i++;
 		}

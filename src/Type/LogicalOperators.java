@@ -20,12 +20,12 @@ public class LogicalOperators {
 				char characterNext = 0;
 				char characterPrev = 0;
 
-				if(character == '/' && characterNext =='/') {
-					break;
-				}
 				if(i != line.length()) {
 					characterNext = line.charAt(i+1);
 		        }
+				if(character == '/' && characterNext =='/') {
+					break;
+				}
 		        if(i != 0) {
 					characterPrev = line.charAt(i-1);
 		        }
@@ -42,15 +42,15 @@ public class LogicalOperators {
 				else if((noOfDoublequotes%2) == 0 && noOfSinglequote%2 ==  0){		
 					if(character == '&' && characterNext == '&' && characterPrev != '&') {
 						numberOfLogicalOperators++;
-						System.out.print("&& ,");
+						//System.out.print("&& ,");
 					}
 					else if(character == '|' && characterNext == '|' && characterPrev != '|') {
 						numberOfLogicalOperators++;
-						System.out.print("|| ,");
+						//System.out.print("|| ,");
 					}
 					else if(character == '!' && characterNext != '=') {
 						numberOfLogicalOperators++;
-						System.out.print("! ,");
+						//System.out.print("! ,");
 					}
 				}
 			}

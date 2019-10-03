@@ -19,13 +19,13 @@ public class BitwiseOperators {
 				char characterNext = 0;
 				char characterNextNext =0;
 				char characterPrev =0;
-
-				if(character == '/' && characterNext =='/') {
-					break;
-				}
+				
 				if(i != line.length()) {
 					characterNext = line.charAt(i+1);
 		        }
+				if(character == '/' && characterNext =='/') {
+					break;
+				}
 		        if(i != line.length()-2) {
 		        	characterNextNext = line.charAt(i+2);
 		        }
@@ -45,31 +45,31 @@ public class BitwiseOperators {
 				else if((noOfDoublequotes%2) == 0 && noOfSinglequote%2 ==  0){				
 					if(character != '|' && characterNext == '|' && (characterNextNext != '|')) {
 						numberOfBitwiseOperators++;
-						System.out.print("| ,");
+						//System.out.print("| ,");
 					}
 					else if(character == '^') {
 						numberOfBitwiseOperators++;
-						System.out.print("^ ,");
+						//System.out.print("^ ,");
 					}
 					else if(character == '~') {
 						numberOfBitwiseOperators++;
-						System.out.print("~ ,");
+						//System.out.print("~ ,");
 					}				
 					else if(character == '<' && characterNext == '<' && characterNextNext != '<' && characterPrev != '<') {
 						numberOfBitwiseOperators++;
-						System.out.print("<< ,");
+						//System.out.print("<< ,");
 					}
 					else if(character == '>' && characterNext == '>' && characterNextNext != '>' && characterPrev != '>') {
 						numberOfBitwiseOperators++;
-						System.out.print(">> ,");
+						//System.out.print(">> ,");
 					}
 					else if(character == '<' && characterNext == '<' && characterNextNext == '<') {
 						numberOfBitwiseOperators++;
-						System.out.print("<<< ,");
+						//System.out.print("<<< ,");
 					}
 					else if(character == '>' && characterNext == '>' && characterNextNext == '>') {
 						numberOfBitwiseOperators++;
-						System.out.print(">>> ,");
+						//System.out.print(">>> ,");
 					}
 				}
 			}

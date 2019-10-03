@@ -17,12 +17,13 @@ public class RelationsOperators {
 				char character = line.charAt(i);
 				char characterNext = 0;
 				char characterPrev = 0;
-				if(character == '/' && characterNext =='/') {
-					break;
-				}
+				
 				if(i != line.length()) {
 					characterNext = line.charAt(i+1);
 		        }
+				if(character == '/' && characterNext =='/') {
+					break;
+				}
 		        if(i != 0) {
 					characterPrev = line.charAt(i-1);
 		        }
@@ -39,27 +40,27 @@ public class RelationsOperators {
 				else if((noOfDoublequotes%2) == 0 && noOfSinglequote%2 ==  0){				
 					if(character == '=' && characterNext == '=') {
 						numberOfRelationOperators++;
-						System.out.print("== ,");
+						//System.out.print("== ,");
 					}
 					else if(character == '!' && characterNext == '=') {
 						numberOfRelationOperators++;
-						System.out.print("!= ,");
+						//System.out.print("!= ,");
 					}
 					else if(character == '>' && characterNext != '=' && characterNext != '>' && characterPrev !='>') {
 						numberOfRelationOperators++;
-						System.out.print("> ,");
+						//System.out.print("> ,");
 					}
 					else if(character == '<' && characterNext != '=' && characterNext != '<' && characterPrev !='<') {
 						numberOfRelationOperators++;
-						System.out.print("< ,");
+						//System.out.print("< ,");
 					}
 					else if(character == '>' && characterNext == '=') {
 						numberOfRelationOperators++;
-						System.out.print(">= ,");
+						//System.out.print(">= ,");
 					}
 					else if(character == '<' && characterNext == '=') {
 						numberOfRelationOperators++;
-						System.out.print("<= ,");
+						//System.out.print("<= ,");
 					}			
 				}
 			}

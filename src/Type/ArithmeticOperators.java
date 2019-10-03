@@ -42,7 +42,7 @@ public class ArithmeticOperators {
 					if(character == '*' && characterNext != '=') {
 						numberOfArithmeticOperators++;
 					}
-					else if(character == '/' && characterNext != '=' && characterNext != '/') {
+					else if(character != '/' && characterNext == '/' && line.charAt(i+2) != '=' && line.charAt(i+2) != '/') {
 						numberOfArithmeticOperators++;
 					}
 					else if(character == '%' && (characterNext != '=')) {

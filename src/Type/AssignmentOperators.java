@@ -41,55 +41,55 @@ public class AssignmentOperators {
 					else if((noOfDoublequotes%2) == 0 && noOfSinglequote%2 ==  0){				
 						if(character == '+' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("+= ,");
+							//System.out.print("+= ,");
 						}
 						else if(character == '-' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("-= ,");
+							//System.out.print("-= ,");
 						}
 						else if(character == '*' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("*= ,");
+							//System.out.print("*= ,");
 						}				
 						else if(character == '/' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("/= ,");
+							//System.out.print("/= ,");
 						}
 						else if(character == '-' && characterNext == '-') {
 							numberOfAssignmentOperators++;
-							System.out.print("-- ,");
+							//System.out.print("-- ,");
 						}
 						else if(character == '=' && characterNext != '=' && characterPrev != '=' && characterPrev != '!' && characterPrev != '>' && characterPrev != '<' && characterPrev != '+' && characterPrev != '-' && characterPrev != '*' && characterPrev != '/' && characterPrev != '|' && characterPrev != '&' && characterPrev != '%' && characterPrev != '^') {
 							numberOfAssignmentOperators++;
-							System.out.print("= ,");
+							//System.out.print("= ,");
 						}
 						else if(character == '|' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("|= ,");
+							//System.out.print("|= ,");
 						}
 						else if(character == '&' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("&= ,");
+							//System.out.print("&= ,");
 						}
 						else if(character == '%' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("%= ,");
+							//System.out.print("%= ,");
 						}
 						else if(character == '^' && characterNext == '=') {
 							numberOfAssignmentOperators++;
-							System.out.print("^= ,");
+							//System.out.print("^= ,");
 						}
 						else if(character == '>' && characterNext == '>' && line.charAt(i+2) == '=' && characterPrev == '>') {
 							numberOfAssignmentOperators++;
-							System.out.print(">>>= ,");
+							//System.out.print(">>>= ,");
 						}
 						else if(character == '<' && characterNext == '=' && characterPrev == '<') {
 							numberOfAssignmentOperators++;
-							System.out.print("<<= ,");
+							//System.out.print("<<= ,");
 						}
 						else if(character == '>' && characterNext == '=' && characterPrev == '>' && line.charAt(i-2) != '>') {
 							numberOfAssignmentOperators++;
-							System.out.print(">>= ,");
+							//System.out.print(">>= ,");
 						}
 					}
 				}	
@@ -101,6 +101,7 @@ public class AssignmentOperators {
 		    	
 		        //totalNumberOfAssignmentOperators = totalNumberOfAssignmentOperators + numberOfAssignmentOperators;
 		    	numberOfAssignmentOperators = 0;
+		    	i++;
 		    }
 	        //System.out.println("Total Number Of Assignment Operators :" +totalNumberOfAssignmentOperators);
 
