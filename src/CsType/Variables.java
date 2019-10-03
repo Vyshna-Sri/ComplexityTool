@@ -38,7 +38,7 @@ public class Variables {
 					}
 				}
 				// variable ==
-				Pattern p2 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]* *[=]+[=]");
+				Pattern p2 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\s]*[=]+[=]");
 				Matcher m2 = p2.matcher(line);
 				while (m2.find()) {
 					if (m2.group() != null) {
@@ -57,7 +57,7 @@ public class Variables {
 					}
 				}
 				// variable <=
-				Pattern p3 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]* *[<]+[=]");
+				Pattern p3 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\s]*[<]+[=]+((?:[\\;])|(?:[\\)]))+");
 				Matcher m3 = p3.matcher(line);
 				while (m3.find()) {
 					if (m3.group() != null) {
@@ -67,7 +67,7 @@ public class Variables {
 				}
 
 				// <= variable
-				Pattern p32 = Pattern.compile("[<]+[=]+[* *]*[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+");
+				Pattern p32 = Pattern.compile("[<]+[=]+[\\s]*[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+((?:[\\;])|(?:[\\)]))+");
 				Matcher m32 = p32.matcher(line);
 				while (m32.find()) {
 					if (m32.group() != null) {
@@ -76,7 +76,7 @@ public class Variables {
 					}
 				}
 				// variable >=
-				Pattern p4 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]* *[>]+[=]");
+				Pattern p4 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\s]*[>]+[=]");
 				Matcher m4 = p4.matcher(line);
 				while (m4.find()) {
 					if (m4.group() != null) {
@@ -86,7 +86,7 @@ public class Variables {
 				}
 
 				// >= variable
-				Pattern p42 = Pattern.compile("[>]+[=]+[* *]*[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+");
+				Pattern p42 = Pattern.compile("[>]+[=]+[\\s]*[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+((?:[\\;])|(?:[\\)]))+");
 				Matcher m42 = p42.matcher(line);
 				while (m42.find()) {
 					if (m42.group() != null) {
@@ -112,6 +112,8 @@ public class Variables {
 						numberOfVariables++;
 					}
 				}
+				
+				/*
 				// variable +
 				Pattern p7 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[* *]\\+");
 				Matcher m7 = p7.matcher(line);
@@ -144,7 +146,7 @@ public class Variables {
 					}
 				}
 				// +variable
-				Pattern p92 = Pattern.compile("[+]+[* *]*[[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+");
+				Pattern p92 = Pattern.compile("[+]+[\\s]*[[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\;]+");
 				Matcher m92 = p92.matcher(line);
 				while (m92.find()) {
 					if (m92.group() != null) {
@@ -183,7 +185,7 @@ public class Variables {
 					}
 				}
 				// -variable
-				Pattern p102 = Pattern.compile("[-]+[* *][[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+");
+				Pattern p102 = Pattern.compile("[-]+[\\s]*[[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\;]+");
 				Matcher m102 = p102.matcher(line);
 				while (m102.find()) {
 					if (m102.group() != null) {
@@ -209,6 +211,48 @@ public class Variables {
 						}
 					}
 				}
+				
+				*/
+				//[[/]|[%]|[*]]variable
+				Pattern p103s = Pattern
+						.compile("((?:[/])|(?:[%])|(?:[*])|(?:[+])|(?:[-]))+(?![\\/])[\\s]*[[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+((?:[\\;])|(?:[\\)]))+");
+				Matcher m103s = p103s.matcher(line);
+				while (m103s.find()) {
+					if (m103s.group() != null) {
+						numberOfVariables++;
+					}
+				}
+				//variable[[/]|[%]|[*]]
+				Pattern p103as = Pattern
+						.compile("[[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\s]*((?:[/])|(?:[%])|(?:[*])|(?:[+])|(?:[-]))+");
+				Matcher m103as = p103as.matcher(line);
+				while (m103as.find()) {
+					if (m103as.group() != null) {
+						numberOfVariables++;
+						// System.out.println("variable- :" + m103as.group());
+					}
+				}
+				//variable[[/]|[%]|[*]] --
+				Pattern p103asm = Pattern
+						.compile("[[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\s]*((?:[/])|(?:[%])|(?:[*])|(?:[+])|(?:[-]))+(?:[\\/])+");
+				Matcher m103asm = p103asm.matcher(line);
+				while (m103asm.find()) {
+					if (m103asm.group() != null) {
+						numberOfVariables--;
+						// System.out.println("variable- :" + m103asm.group());
+					}
+				}
+				
+				//variable[[/]|[%]|[*]] -- (++,--)
+				Pattern p103mz = Pattern
+						.compile("[[A-Za-z]+|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\s]*((?:[/])|(?:[%])|(?:[*])|(?:[+])|(?:[-]))+((?:[+])|(?:[-]))+");
+				Matcher m103mz = p103mz.matcher(line);
+				while (m103mz.find()) {
+					if (m103mz.group() != null) {
+						numberOfVariables = numberOfVariables -1 ;
+						//System.out.println("variable- :" + m103mz.group());
+					}
+				}
 				// (variableType variable)
 				Pattern p11 = Pattern.compile("[\\(]+[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\)]");
 				Matcher m11 = p11.matcher(line);
@@ -220,7 +264,7 @@ public class Variables {
 				}
 
 				// variableType or variableType[d] =
-				Pattern p12 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[* *]+[=](?!=)");
+				Pattern p12 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[\\s]+[=](?![=])+");
 				Matcher m12 = p12.matcher(line);
 				while (m12.find()) {
 					if (m12.group() != null) {
@@ -230,7 +274,7 @@ public class Variables {
 				}
 				// variableType or variableType[d] =
 				Pattern p12a = Pattern
-						.compile("[A-Za-z]+[* *]+[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[* *]+[=](?!=)");
+						.compile("[A-Za-z]+[* *]+[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[* *]+[=](?![=])+");
 				Matcher m12a = p12a.matcher(line);
 				while (m12a.find()) {
 					if (m12a.group() != null) {
@@ -240,7 +284,7 @@ public class Variables {
 				}
 
 				// variableType or variableType[d]=
-				Pattern p13 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[=](?!=)");
+				Pattern p13 = Pattern.compile("[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[=](?![=])+");
 				Matcher m13 = p13.matcher(line);
 				while (m13.find()) {
 					if (m13.group() != null) {
@@ -249,7 +293,7 @@ public class Variables {
 					}
 				}
 				// variableType or variableType[d]=
-				Pattern p13a = Pattern.compile("[A-Za-z]+[* *]+[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[=](?!=)");
+				Pattern p13a = Pattern.compile("[A-Za-z]+[* *]+[[A-Za-z]|[[A-Za-z]+[\\[]+[A-Za-z]+[\\]]]]+[=](?![=])+");
 				Matcher m13a = p13a.matcher(line);
 				while (m13a.find()) {
 					if (m13a.group() != null) {
@@ -299,7 +343,7 @@ public class Variables {
 				 * }
 				 */
 				// to check FileReader f;
-				Pattern p17 = Pattern.compile("[A-Za-z]+[* *]+[A-Za-z]+[\\;|\\,|\\)|[=]]");
+				Pattern p17 = Pattern.compile("[A-Za-z]+[\\s]+[A-Za-z]+[\\;|\\,|\\)|[=]]+");
 				Matcher m17 = p17.matcher(line);
 				while (m17.find()) {
 					if (m17.group() != null) {
@@ -346,7 +390,7 @@ public class Variables {
 				}
 			}
 			// System.out.println(s);
-			// System.out.println("\tNumber Of Texts :"+ numberOfVariables);
+			// System.out.println("\tNumber Of Variables :"+ numberOfVariables);
 			// System.out.println("");
 			complexity[i] = (numberOfVariables) * complexityValue;
 
