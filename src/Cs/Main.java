@@ -2,19 +2,19 @@ package Cs;
 
 import java.io.IOException;
 
-import Type.ArithmeticOperators;
-import Type.AssignmentOperators;
-import Type.BitwiseOperators;
-import Type.KeyWords;
-import Type.KeyWordsType2;
-import Type.LogicalOperators;
-import Type.Manipulators;
-import Type.Methods;
-import Type.MiscellaneousOperators;
-import Type.NumericValues;
-import Type.RelationsOperators;
-import Type.Texts;
-import Type.Variables;
+import CsType.ArithmeticOperators;
+import CsType.AssignmentOperators;
+import CsType.BitwiseOperators;
+import CsType.KeyWordsValueOne;
+import CsType.KeyWordsValueTwo;
+import CsType.LogicalOperators;
+import CsType.Manipulators;
+import CsType.Methods;
+import CsType.MiscellaneousOperators;
+import CsType.NumericValues;
+import CsType.RelationsOperators;
+import CsType.Texts;
+import CsType.Variables;
 
 public class Main {
 
@@ -26,15 +26,17 @@ public class Main {
 		BitwiseOperators bitwiseOperators = new BitwiseOperators();
 		MiscellaneousOperators miscellaneousOperators = new MiscellaneousOperators();
 		AssignmentOperators assignmentOperators = new AssignmentOperators();
-		KeyWords keyWordsComplexity1 = new KeyWords();
-		KeyWordsType2 keyWordsComplexity2 = new KeyWordsType2();
+		KeyWordsValueOne keyWordsComplexity1 = new KeyWordsValueOne();
+		KeyWordsValueTwo keyWordsComplexity2 = new KeyWordsValueTwo();
 		Texts textsComplexity = new Texts();
 		Manipulators manipulatorsComplexity = new Manipulators();
 		Methods methodComplexity = new Methods();
 		NumericValues numericValuesComplexity = new NumericValues();
 		Variables variablesComplexity = new Variables();
-
-		String filePath = "/home/jaliya/Desktop/Projects/CodeComplexity/Complexity_of_a_program/src/SrcCodes/FactorialExample.java";
+		
+		String filePath = "/home/jaliya/Desktop/Projects/CodeComplexity/Complexity_of_a_program/src/SrcCodes/FibonacciMain.java";
+		//String filePath = "/home/jaliya/Desktop/Projects/CodeComplexity/Complexity_of_a_program/src/SrcCodes/MyException.java";
+		//String filePath = "/home/jaliya/Desktop/Projects/CodeComplexity/Complexity_of_a_program/src/SrcCodes/FactorialExample.java";
 		ReadFileLineByLine readFileLineByLine = new ReadFileLineByLine();
 		String[] code;
 		code = readFileLineByLine.file(filePath);
@@ -53,9 +55,11 @@ public class Main {
 		int tests[] = textsComplexity.complexity(code);
 		int variables[] = variablesComplexity.complexity(code);
 		int i = 0;
+		int totalCs = 0;
+		
 		for (String s : code) {
 			System.out.println(s);
-			System.out.println("\tCs :" + (
+			int lineTotalCs = 
 					arithmetic[i]+
 					assignment[i]+
 					bitwise[i]+
@@ -68,10 +72,15 @@ public class Main {
 					numericValues[i]+
 					relations[i]+
 					tests[i]+
-					variables[i]));
+					variables[i];
+			
+			System.out.println("\tCs :" +lineTotalCs);
 			System.out.println("");
+			totalCs = totalCs + lineTotalCs;
 			i++;
 		}
+		System.out.println("================= Total Cs :" +totalCs+" =================");
+		
 	}
 
 }
